@@ -22,7 +22,7 @@ key_mappings = {
 File.open("array30_key_mappings.txt", "w+") do |file|
   array30_table.each do |chr, code|
     if kanji_bank.chars.include?(chr)
-      keys = code.chars.map { |c| "#{c}(#{key_mappings[c]})" }.join(' ')
+      keys = code.gsub(/\P{ASCII}/, '').chars.map { |c| "#{c}(#{key_mappings[c]})" }.join(' ')
       output = sprintf("%-2s%s\n", chr, keys)
       puts output
       file << output
